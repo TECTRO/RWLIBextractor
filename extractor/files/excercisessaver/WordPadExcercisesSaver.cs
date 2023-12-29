@@ -56,7 +56,7 @@ namespace extractor.files.excercisessaver
         public void Save(ExerciseContainer container)
         {
             var exercises = container.Exercises;
-            var theme = container.Theme;
+            var theme = container.Topic;
 
             using (WordprocessingDocument wordDocument = WordprocessingDocument.Create(path.AbsolutePath, WordprocessingDocumentType.Document))
             {

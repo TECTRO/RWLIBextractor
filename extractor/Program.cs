@@ -88,7 +88,7 @@ async Task LoadContentPagesFromWeb()
         Console.WriteLine();
     }
 
-    Console.WriteLine("Do you want to cache test data? y/n");
+    Console.WriteLine("Do you want to cache pages? y/n");
     if (Console.ReadKey().Key == ConsoleKey.Y)
     {
         testContainerSerialiser.Save(
@@ -102,11 +102,11 @@ async Task LoadContentPagesFromWeb()
 }
 void LoadContentPagesFromCache()
 {
-    Console.WriteLine("content uris restoration started");
+    Console.WriteLine("uris restoration started");
     var container = testContainerSerialiser.Load();
     topic = container?.Topic;
     contentPageUrls?.AddRange(container?.PageUrls ?? Array.Empty<Uri>());
-    Console.WriteLine("content uris restoration completed");
+    Console.WriteLine("uris restoration completed");
     Console.WriteLine();
 
     if (topic != null)
@@ -120,7 +120,7 @@ void LoadContentPagesFromCache()
 
 if (testContainerSerialiser.Exists())
 {
-    Console.WriteLine("Do you want to use cached theme content uris? y/n");
+    Console.WriteLine("Do you want to load pages from cache? y/n");
     var keyInfo1 = Console.ReadKey();
     Console.WriteLine();
     if (keyInfo1.Key == ConsoleKey.Y)
@@ -143,7 +143,7 @@ var excercises = new List<Exercise>();
 async Task LoadExcercisesFromWeb()
 {
     
-    Console.WriteLine("network download started");
+    Console.WriteLine("Excercises loading started");
 
     for (int i = 0; i < contentPageUrls.Count; i++)
     {
@@ -170,16 +170,16 @@ async Task LoadExcercisesFromWeb()
 }
 void LoadExcercisesFromCache()
 {
-    Console.WriteLine("excercises restoration started");
+    Console.WriteLine("Excercises restoration started");
     excercises.AddRange(excerciseSerialiser.Load() ?? Array.Empty<Exercise>());
-    Console.WriteLine("excercises restoration completed");
+    Console.WriteLine("Excercises restoration completed");
     Console.WriteLine();
 
 }
 
 if (excerciseSerialiser.Exists())
 {
-    Console.WriteLine("Do you want to use cached exercises? y/n");
+    Console.WriteLine("Do you want to load exercises from cache? y/n");
     var keyInfo1 = Console.ReadKey().Key;
     Console.WriteLine();
 
@@ -202,7 +202,7 @@ else
 
 #region docx exporting
 
-Console.WriteLine("Do you want to generate and export docx file? y/n");
+Console.WriteLine("Do you want to generate docx file? y/n");
 var keyInfo = Console.ReadKey();
 Console.WriteLine();
 if (keyInfo.Key == ConsoleKey.Y)
@@ -212,7 +212,7 @@ if (keyInfo.Key == ConsoleKey.Y)
         new ExerciseContainer()
         {
             Exercises = excercises.ToArray(),
-            Theme = topic ?? string.Empty
+            Topic = topic ?? string.Empty
         }
     );
     Console.WriteLine("Export finished");
