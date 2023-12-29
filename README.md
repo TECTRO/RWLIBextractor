@@ -1,3 +1,3 @@
 # RWLIBextractor
 
-For the extractor to work correctly, you need to download, unpack and run the FlareSolverr service locally. repo link: https://github.com/FlareSolverr/FlareSolverr 
+To properly configure the extractor, download unpack and run the FlareSolverr service locally. link: https://github.com/FlareSolverr/FlareSolverr 
