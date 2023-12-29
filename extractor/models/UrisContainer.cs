@@ -2,7 +2,7 @@
 {
     internal class UrisContainer
     {
-        public required string Theme {  get; set; }
+        public required string Topic {  get; set; }
         public required Uri[] PageUrls {  get; set; }
     }
 }

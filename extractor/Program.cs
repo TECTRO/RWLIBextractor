@@ -45,12 +45,12 @@ ISaveLoader<UrisContainer> testContainerSerialiser =
 
 #region pages loading
 
-string? theme = null;
+string? topic = null;
 var contentPageUrls = new List<Uri>();
 
 async Task LoadContentPagesFromWeb()
 {
-    Console.WriteLine("enter required RWlib URl with required theme");
+    Console.WriteLine("enter required RWlib URl with required topic");
 
     var url = Console.ReadLine() ?? string.Empty;
 
@@ -61,12 +61,12 @@ async Task LoadContentPagesFromWeb()
     var index = 0;
     do
     {
-        var themePage = await fetcher.GetPageHtml(nextPageUri);
-        var pageController = controllerProvider.GetDOMController(themePage);
+        var topicPage = await fetcher.GetPageHtml(nextPageUri);
+        var pageController = controllerProvider.GetDOMController(topicPage);
 
-        if (theme == null)
+        if (topic == null)
         {
-            theme = pageController.TryExtractTopic();
+            topic = pageController.TryExtractTopic();
         }
 
         contentPageUrls?.AddRange(pageController.GetContentPageUris());
@@ -81,10 +81,10 @@ async Task LoadContentPagesFromWeb()
     Console.WriteLine($"All pages downloaded.");
     Console.WriteLine();
 
-    if (theme != null)
+    if (topic != null)
     {
         Console.WriteLine();
-        Console.WriteLine(theme);
+        Console.WriteLine(topic);
         Console.WriteLine();
     }
 
@@ -95,7 +95,7 @@ async Task LoadContentPagesFromWeb()
             new UrisContainer()
             {
                 PageUrls = contentPageUrls?.ToArray() ?? Array.Empty<Uri>(),
-                Theme = theme ?? string.Empty
+                Topic = topic ?? string.Empty
             });
     }
     Console.WriteLine();
@@ -104,15 +104,15 @@ void LoadContentPagesFromCache()
 {
     Console.WriteLine("content uris restoration started");
     var container = testContainerSerialiser.Load();
-    theme = container?.Theme;
+    topic = container?.Topic;
     contentPageUrls?.AddRange(container?.PageUrls ?? Array.Empty<Uri>());
     Console.WriteLine("content uris restoration completed");
     Console.WriteLine();
 
-    if (theme != null)
+    if (topic != null)
     {
         Console.WriteLine();
-        Console.WriteLine(theme);
+        Console.WriteLine(topic);
         Console.WriteLine();
     }
 
@@ -142,9 +142,7 @@ var excercises = new List<Exercise>();
 
 async Task LoadExcercisesFromWeb()
 {
-    /*   //debug
-   contentPageUrls = new List<string> { "C:\\Users\\antpr\\Desktop\\Какие из перечисленных объектов основных средств подлежат амортизации_ - Ответ СДО - rwlib.html" };
-*/
+    
     Console.WriteLine("network download started");
 
     for (int i = 0; i < contentPageUrls.Count; i++)
@@ -214,7 +212,7 @@ if (keyInfo.Key == ConsoleKey.Y)
         new ExerciseContainer()
         {
             Exercises = excercises.ToArray(),
-            Theme = theme ?? string.Empty
+            Theme = topic ?? string.Empty
         }
     );
     Console.WriteLine("Export finished");
