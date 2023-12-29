@@ -66,7 +66,7 @@ async Task LoadContentPagesFromWeb()
 
         if (theme == null)
         {
-            theme = pageController.TryExtractTheme();
+            theme = pageController.TryExtractTopic();
         }
 
         contentPageUrls?.AddRange(pageController.GetContentPageUris());

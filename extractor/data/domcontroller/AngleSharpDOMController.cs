@@ -66,10 +66,10 @@ namespace extractor.data.domcontroller
             return new Exercise { Question = question, Answers = answers };
         }
 
-        public string? TryExtractTheme()
+        public string? TryExtractTopic()
         {
-            var theme = document.QuerySelector("div.content.tag h1")?.Text();
-            return theme;
+            var topic = document.QuerySelector("div.content.tag h1")?.Text();
+            return topic;
         }
     }
 }

@@ -8,6 +8,6 @@
 
         Exercise? TryExtractExercise();
 
-        string? TryExtractTheme();
+        string? TryExtractTopic();
     }
 }

@@ -71,7 +71,7 @@ namespace extractor.files.excercisessaver
 
                 for (int i = 0; i < exercises.Length; i++)
                 {
-                    Exercise? excercise = exercises[i];
+                    Task? excercise = exercises[i];
                     InsertLine(body, (inserter) => {
                         inserter.Insert($"Вопрос {i+1}: ", fontSize: 16, isBald: true, preserveSpaces: true);
                         inserter.Insert(excercise.Question, fontSize: 16);
